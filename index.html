@@ -1,1 +1,332 @@
-Hello World
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: #f8f5f0;
+            color: #555;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23d8d0c0" fill-opacity="0.3" d="M50 20c5 0 10-5 10-10 0 5 5 10 10 10-5 0-10 5-10 10 0-5-5-10-10-10zm0 30c5 0 10-5 10-10 0 5 5 10 10 10-5 0-10 5-10 10 0-5-5-10-10-10z"/></svg>');
+            background-size: 150px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container:before, .container:after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%237a7a59" fill-opacity="0.1" d="M50 0c13.8 0 25 11.2 25 25 0 13.8-11.2 25-25 25S25 38.8 25 25C25 11.2 36.2 0 50 0zm0 50c13.8 0 25 11.2 25 25 0 13.8-11.2 25-25 25S25 88.8 25 75c0-13.8 11.2-25 25-25z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        
+        .container:before {
+            top: -50px;
+            left: -50px;
+            transform: rotate(15deg);
+        }
+        
+        .container:after {
+            bottom: -50px;
+            right: -50px;
+            transform: rotate(-15deg);
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e0d8c8;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #a8b38c, #d8c8a8, #a8b38c);
+        }
+        
+        h1 {
+            font-size: 2.3rem;
+            color: #7a7a59;
+            margin-bottom: 10px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        
+        .couple-names {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            color: #5a5a3a;
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        
+        .couple-names:before, .couple-names:after {
+            content: "✿";
+            color: #a8b38c;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .couple-names:before {
+            left: -10px;
+        }
+        
+        .couple-names:after {
+            right: -10px;
+        }
+        
+        .date-place {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border: 1px solid #e0d8c8;
+            position: relative;
+        }
+        
+        .date-place h2 {
+            color: #7a7a59;
+            margin-bottom: 10px;
+            font-weight: normal;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .date-place h2:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a8b38c, transparent);
+        }
+        
+        .date, .place {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .date p, .place p {
+            margin: 5px 0;
+        }
+        
+        .requests {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border: 1px solid #e0d8c8;
+        }
+        
+        .requests h2 {
+            color: #7a7a59;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: normal;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .requests h2:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a8b38c, transparent);
+        }
+        
+        .requests ul {
+            list-style-type: none;
+        }
+        
+        .requests li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e0d8c8;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .requests li:last-child {
+            border-bottom: none;
+        }
+        
+        .requests li:before {
+            content: "❀";
+            position: absolute;
+            left: 0;
+            color: #a8b38c;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .heart {
+            color: #b3a08c;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .countdown {
+            background-color: rgba(232, 228, 216, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #5a5a3a;
+            border: 1px solid #d8d0c0;
+        }
+        
+        .floral-divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #a8b38c;
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Дорогие друзья и родные!</h1>
+            <div class="couple-names">Саша <span class="heart">❤</span> Аня</div>
+            <p>Приглашаем вас разделить с нами радость нашего бракосочетания!</p>
+        </header>
+        
+        <div class="floral-divider">✿ ✿ ✿</div>
+        
+        <div class="date-place">
+            <div class="date">
+                <h2>Дата</h2>
+                <p>27 июля 2025 года</p>
+                <p>Начало в 99:00</p>
+            </div>
+            
+            <div class="floral-divider">❀ ❀ ❀</div>
+            
+            <div class="place">
+                <h2>Место</h2>
+                <p>Ресторан "Название ресторана"</p>
+                <p>г. Воронеж, ул. Уличная, 42</p>
+            </div>
+        </div>
+        
+        <div class="countdown" id="countdown">
+            До свадьбы осталось: <span id="timer"></span>
+        </div>
+        
+        <div class="requests">
+            <h2>Наши просьбы к гостям</h2>
+            <ul>
+                <li>Подтвердите, пожалуйста, ваше присутствие до 1 июля</li>
+                <li>Дресс-код: нарядные костюмы и платья в пастельных тонах</li>
+                <li>Пожалуйста, воздержитесь от использования конфетти и блёсток</li>
+                <li>Если хотите сделать подарок, мы будем рады вкладу в наше свадебное путешествие</li>
+                <li>Приносите с собой хорошее настроение!</li>
+            </ul>
+        </div>
+        
+        <div class="floral-divider">✿ ✿ ✿</div>
+        
+        <footer>
+            <p>С нетерпением ждём этого прекрасного дня вместе с вами!</p>
+            <p>Саша и Аня</p>
+        </footer>
+    </div>
+
+    <script>
+        // Таймер обратного отсчёта
+        function updateCountdown() {
+            const weddingDate = new Date('2025-07-27T15:00:00');
+            const now = new Date();
+            const diff = weddingDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('timer').innerHTML = "Сегодня наш день!";
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('timer').innerHTML = `${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
+        }
+        
+        // Обновляем таймер каждую секунду
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Анимация для цветочных разделителей
+        const dividers = document.querySelectorAll('.floral-divider');
+        let angle = 0;
+        
+        setInterval(() => {
+            angle += 0.5;
+            const scale = 1 + Math.sin(angle * Math.PI / 180) * 0.1;
+            
+            dividers.forEach(divider => {
+                divider.style.transform = `scale(${scale})`;
+                divider.style.opacity = 0.7 + Math.sin(angle * Math.PI / 180) * 0.3;
+            });
+        }, 50);
+    </script>
+</body>
+</html>
